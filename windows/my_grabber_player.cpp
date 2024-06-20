@@ -351,6 +351,7 @@ HRESULT MyPlayer::Invoke(IMFAsyncResult* pResult)
         } else if (meType == MESessionPaused) {
             // workaround: something wrong with topology, re-open now
             std::cout << "[video_player_win] load fail, reload now" << std::endl;
+            OnPlayerEvent(MEError);
             Shutdown();
             m_isShutdown = false;
             m_reopenFunc([=](bool bSuccess) {
