@@ -199,6 +199,8 @@ class WinVideoPlayerController extends ValueNotifier<WinVideoPlayerValue> {
         log("[video_player_win] playback event: error");
         value = value.copyWith(
             isInitialized: false, hasError: true, isPlaying: false);
+        _eventStreamController.add(VideoEvent(
+          eventType: VideoEventType.initialized, duration: null, size: null));
         _cancelTrackingPosition();
         break;
     }
